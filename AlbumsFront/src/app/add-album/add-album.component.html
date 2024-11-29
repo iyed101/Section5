@@ -1,0 +1,45 @@
+<div class="container">
+  <div>
+    <h2>Ajouter un Album :</h2>
+  </div>
+  <form>
+    <div hidden class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Album</label>
+      <input type="text" [(ngModel)]="newAlbum.idAlbum" name="idAlbum" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Album</label>
+      <input type="text" [(ngModel)]="newAlbum.name" name="name" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Genre Album</label>
+      <input type="text" [(ngModel)]="newAlbum.genre" name="genre" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date Sortie</label>
+      <input type="date" [(ngModel)]="newAlbum.date_sortie" name="Date_sortie" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>nombre de tracks</label>
+      <input type="number" [(ngModel)]="newAlbum.nb_tracks" name="nb_tracks" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Artist</label>
+      <select class="form-control form-control-lg" id="idArtist" name="idArtist" [(ngModel)]="newIdArtist">
+        <option *ngFor="let artist of artists" [value]="artist.idArtist">
+          {{artist.name}}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <label class="mb-2">Image :</label>
+      <input type="file" (change)="onImageUpload($event)" name="logo" class="form-control">
+    </div>
+    <div class="col-sm-16 col-md-16 col-lg-16">
+      <img [src]="imagePath" class="card-img-top img-fluid rounded-start" style="width: 500px; height: 300px" />
+    </div>
+    <div class="mt-2">
+      <button type="submit" (click)="addAlbum()" class="btn btn-success">Ajouter</button>
+    </div>
+  </form>
+</div>

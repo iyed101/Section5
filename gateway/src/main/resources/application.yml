@@ -1,0 +1,19 @@
+# @format
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: users-microservice
+          uri: lb://users-microservice
+          predicates:
+            - Path=/users/**
+          order: 0
+
+        - id: album
+          uri: lb://ALBUM
+          predicates:
+            - Path=/albums/**
+          order: 1
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials

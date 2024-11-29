@@ -1,0 +1,49 @@
+<div class="container">
+  <!--<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2"></div>
+    <label>Nom Album</label>
+    <input type="text" class="form-control" [(ngModel)]="name" name="name" class="form-control">
+    <button type="submit" class="btn btn-primary mb-2 ml-2" (click)="rechercheParNom()">Rechercher</button>
+  </form>-->
+  <!-- <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <label>Nom de album en tapant</label>
+      <input class="form-control" #searchTerm (keyup)="onkeyUp(searchTerm.value)">
+    </div>
+  </form> -->
+  <form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+      <label>Nom de album en tapant</label>
+      <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control">
+    </div>
+  </form>
+  <div class="card shadow mb-4">
+      <div class="card-body">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Date_sortie</th>
+                      <th>Genre</th>
+                      <th>Nb_tracks</th>
+                      <th>Artist</th>
+                  </tr>
+              </thead>
+              <tbody *ngFor="let albs of albums | searchFilter: searchTerm">
+                  <tr>
+                      <td>{{albs.idAlbum}}</td>
+                      <td>{{albs.name}}</td>
+                      <td>{{albs.date_sortie | date:'dd/MM/yyyy'}}</td>
+
+                      <td>{{albs.genre}}</td>
+                      <td>{{albs.nb_tracks}}</td>
+                      <td>{{albs.artist.name}}</td>
+                      <!--<td><button class="btn btn-danger" (click)="supprimerAlbum(albs)">Supprimer</button></td>
+                      <td><button class="btn btn-success" [routerLink]="['/update-album',albs.idAlbum]">Modifier</button></td>-->
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

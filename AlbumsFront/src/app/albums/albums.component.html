@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date_sortie</th>
+            <th>Genre</th>
+            <th>Nb_tracks</th>
+            <th>Artist</th>
+            <th>Image</th>
+            <th *ngIf="authService.isAdmin()">Supprimer</th>
+            <th *ngIf="authService.isAdmin()">Modifier</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let albs of albums">
+          <tr>
+            <td>{{albs.idAlbum}}</td>
+            <td>{{albs.name}}</td>
+            <td>{{albs.date_sortie | date:'dd/MM/yyyy'}}</td>
+
+            <td>{{albs.genre}}</td>
+            <td>{{albs.nb_tracks}}</td>
+            <td>{{albs.artist.name}}</td>
+            <td><img class="card-img-top img-responsive" src="{{albs.imageStr}}" style="height :50px;width:100px">
+            </td>
+            <td *ngIf="authService.isAdmin()"><a class="btn btn-danger" (click)="supprimerAlbum(albs)">Supprimer</a>
+            </td>
+            <td *ngIf="authService.isAdmin()"><a class="btn btn-success"
+                [routerLink]="['/update-album',albs.idAlbum]">Modifier</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

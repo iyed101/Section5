@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Gestion des albums</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <!-- Menu Albums aligné à gauche -->
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/albums" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Albums
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" *ngIf="authService.isAdmin()" routerLink="add-album">Ajouter</a></li>
+            <li><a class="dropdown-item" href="#">Lister</a></li>
+            <li><a class="dropdown-item" *ngIf="authService.isAdmin()" routerLink="/recherche-par-artist">Recherche par artist</a></li>
+            <li><a class="dropdown-item" *ngIf="authService.isAdmin()" routerLink="/recherche-par-nom">Recherche par nom</a></li>
+            <li><a class="dropdown-item" *ngIf="authService.isAdmin()" routerLink="/liste-artists">Gestion des artist</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li><a class="nav-link">{{authService.loggedUser}}</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Connexion
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a *ngIf="!authService.isloggedIn" class="dropdown-item" routerLink="/login">Login</a></li>
+            <li><a *ngIf="authService.isloggedIn" class="dropdown-item" (click)="onLogout()">Logout</a></li>
+            <li><a class="dropdown-item" href="#">Profil</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
